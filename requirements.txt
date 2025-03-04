@@ -5,3 +5,4 @@ google-generativeai
 speechrecognition
 pyttsx3
 paho-mqtt
+gunicorn
