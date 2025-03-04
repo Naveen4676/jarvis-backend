@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # OpenAI & Gemini API Keys (Replace with your keys)
-openai.api_key = "YOUR_OPENAI_API_KEY"
+
 genai.configure(api_key="")
 
 # Initialize Text-to-Speech
