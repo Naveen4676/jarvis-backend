@@ -1,0 +1,7 @@
+flask
+flask-cors
+openai
+google-generativeai
+speechrecognition
+pyttsx3
+paho-mqtt
