@@ -14,8 +14,9 @@ GENAI_API_KEY = "your-gemini-api-key"  # Replace with your Gemini API key
 genai.configure(api_key=GENAI_API_KEY)
 
 # Initialize Text-to-Speech
-engine = pyttsx3.init()
-engine.setProperty('rate', 150)
+from gtts import gTTS
+import tempfile
+import os
 
 # MQTT Setup (For IoT)
 mqtt_client = mqtt.Client()
@@ -36,10 +37,11 @@ def chat():
         reply = f"Error: {str(e)}"
 
     # Speak the response
-    engine.say(reply)
-    engine.runAndWait()
-
-    return jsonify({"reply": reply})
+    # Use gTTS instead of pyttsx3
+tts = gTTS(text=reply, lang='en')
+with tempfile.NamedTemporaryFile(delete=True) as fp:
+    tts.save(fp.name)
+    os.system(f"mpg321 {fp.name}")  # Requires 'mpg321' for playing sound
 
 @app.route("/execute", methods=["POST"])
 def execute():
